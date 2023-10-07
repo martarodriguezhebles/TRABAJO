@@ -29,5 +29,5 @@
 # Tiene tres opciones, el proveedor A le cobra 500 u.m.por el primer pedido, el B 450 u.m. 
 # y el C 700 u.m.. si añade 100 unidades mas, el proveedor A le cobrara 200 u.m. de suplemento, 
 # el B 250 u.m. y el C 100 u.m.. Mientras que si añade otras 100 unidades mas el proveedor A 
-# le sumará 150 u.m, el B 200 u.m. y el C nada. ¿Cuál es la opción más rentable si espera muchas 
-# ventas este año?
+# le sumará 150 u.m, el B 200 u.m. y el C nada. 
+# ¿Cuál es la opción más rentable si espera muchas ventas este año?
