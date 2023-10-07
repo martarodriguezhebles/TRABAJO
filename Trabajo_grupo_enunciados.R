@@ -23,7 +23,7 @@
 
 ######## Marta Rodríguez Hebles
 # Una empresa de venta de electrodomésticos desea contartar un proveedor para el próximo año,
-# de manera que le salga lo más rentable posible. todos los proveedores tienes un precio fijo 
+# de manera que le salga lo más rentable posible. Todos los proveedores tienes un precio fijo 
 # inicial para un pedido de 1000 unidades, dependiendo de la marca, y dicho precio aumenta 
 # por cada 100 unidades extra que la empresa solicite fuera de plazo. 
 # Tiene tres opciones, el proveedor A le cobra 500 u.m.por el primer pedido, el B 450 u.m. 
