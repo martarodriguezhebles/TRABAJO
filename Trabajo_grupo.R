@@ -19,6 +19,9 @@
 # posible/piensa que todo le va a ir bien?
 # ¿Y si fuera al revés y tuviera siempre "mala suerte"?
 
+rm(list_ls())
+source ("teoriadecision_funciones_incertidumbre.R")
+
 tabla2=crea.tablaX(c(50,75,110,400,
                      65,80,90,250,
                      80,80,80,80))
