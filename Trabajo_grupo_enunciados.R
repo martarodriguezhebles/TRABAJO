@@ -31,3 +31,5 @@
 # el B 250 u.m. y el C 100 u.m.. Mientras que si añade otras 100 unidades mas el proveedor A 
 # le sumará 150 u.m, el B 200 u.m. y el C nada.
 # ¿Cuál es la opción más rentable si espera muchas ventas este año?
+
+
