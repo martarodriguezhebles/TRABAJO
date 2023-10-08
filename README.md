@@ -1,7 +1,6 @@
 # trabajo01grupotd2023
 
-Este repositorio alberga el código y los recursos relacionados con el trabajo grupal de Teoría de la decisión. El proyecto se enfoca en métodos de incertidumbre y contiene 4 problemas relacionados con el tema. El primer problema será una tabla de decisión con valores inventados y resuelto con cada uno de los métodos o funciones individuales de Incertidumbre por separado. 
-El segundo problema tendrá un enunciado que se refiera a una situación real.
+Este repositorio alberga el código y los recursos relacionados con el trabajo grupal de Teoría de la decisión. El proyecto se enfoca en métodos de incertidumbre y contiene 4 problemas relacionados con el tema. El problema será una tabla de decisión con valores inventados y resuelto con cada uno de los métodos o funciones individuales de Incertidumbre por separado.
 
 Contiene los siguientes archivos:
 - Problema_grupo.R que contiene el código del trabajo.
