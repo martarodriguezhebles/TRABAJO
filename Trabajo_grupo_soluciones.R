@@ -42,13 +42,17 @@ criterio.Todos(tabla2,0.5,F)
 # y el C 700 u.m.. Si añade 100 unidades mas, el proveedor A le cobrara 200 u.m. de suplemento, 
 # el B 250 u.m. y el C 100 u.m.. Mientras que si añade otras 100 unidades mas el proveedor A 
 # le sumará 150 u.m, el B 200 u.m. y el C nada. ¿Cuál es la opción más rentable si espera muchas 
-# ventas este año?
+# ventas este año? ¿Y si tiene una previsión negativa?
 
 tabla=crea.tablaX(c(500,700,850,
                     450,700,900,
                     700,800,800))
+colnames(tabla)=c("P inicial","+100 udades.","+100 udades.")
+rownames(tabla)=c("A","B","C")
+tabla
 
 criterio.Todos(tabla,0.5,F)
 
-
+## En el primer caso, debe escoger el proveedor B puesto que estamos en el caso de pensamiento optimista,
+## mientras que en el segundo caso se quedaría con el C, correspondiente al pensamiento pesimista(Wald)
 
