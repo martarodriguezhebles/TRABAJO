@@ -38,6 +38,7 @@ kable(tabla1, booktabs = TRUE, caption = "Tabla de decisión",align = "c",linese
                 bootstrap_options = "striped", full_width = F) 
 ```
 
+\newpage
 # Marta Rodríguez Hebles
 
 # Tabla de decisión con valores inventados.
