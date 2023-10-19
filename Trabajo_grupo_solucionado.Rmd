@@ -422,3 +422,172 @@ cat("La alternativa óptima por el criterio ",PuntoIdealD$criterio, " en el caso
 
 
 
+
+\newpage
+
+# Eva Clara Resch
+
+## Problema 1 : Tabla de Decisión
+
+Observando los dos casos, favorable y desfavorable, por separado. El resumen de cada caso se encuentra al final del apartado.
+
+```{r tablaDecision1ECR, include=FALSE}
+set.seed(13)
+tb1 = crea.tablaX(rnorm(5*6, mean=100, sd=10), 5, 6)
+df1 = data.frame(tb1)
+```
+
+```{r printtableECR}
+knitr::kable(df1, format="markdown")
+```
+
+## Caso 1: favorable {-}
+
+### Criterio de Wald (fav)
+
+```{r criterioWaldFavECR}
+criterio.Wald(tablaX = tb1, favorable = TRUE)
+```
+
+### Criterio Optimista (fav)
+
+```{r criterioOptimistaFavECR}
+criterio.Optimista(tablaX = tb1, favorable = TRUE)
+```
+
+### Criterio de Hurwicz (fav)
+
+En caso de alfa = 0.4:
+
+```{r criterioHurwiczFavECR}
+criterio.Hurwicz(tablaX = tb1, alfa = 0.4, favorable = TRUE)
+```
+
+El caso general:
+
+```{r criterioHurwiczGeneralFavECR}
+dibuja.criterio.Hurwicz(tablaX = tb1, favorable = TRUE)
+```
+
+### Criterio de Savage (fav)
+
+```{r criterioSavageFavECR}
+criterio.Savage(tablaX = tb1, favorable = TRUE)
+```
+
+### Criterio de Laplace (fav)
+
+```{r criterioLaplaceFavECR}
+criterio.Laplace(tablaX = tb1, favorable = TRUE)
+```
+
+### Criterio del Punto Ideal (fav)
+
+```{r criterioPuntoIdealFavECR}
+criterio.PuntoIdeal(tablaX = tb1, favorable = TRUE)
+```
+
+### Resumen {-}
+Con respecto a los beneficios, la mayoría de los criterios eligen la alternativa d1, sólo los criterios Optimista y Savage eligen la alternativa d4.
+
+
+## Caso 2: desfavorable {-}
+
+### Criterio de Wald (desfav)
+
+```{r criterioWaldDesfavECR}
+criterio.Wald(tablaX = tb1, favorable = FALSE)
+```
+
+### Criterio Optimista (desfav)
+
+```{r criterioOptimistaDesfavECR}
+criterio.Optimista(tablaX = tb1, favorable = FALSE)
+```
+
+### Criterio de Hurwicz (desfav)
+
+En caso de alfa = 0.4:
+
+```{r criterioHurwiczDesfavECR}
+criterio.Hurwicz(tablaX = tb1, alfa = 0.4, favorable = FALSE)
+```
+
+El caso general:
+
+```{r criterioHurwiczGeneralDesfavECR}
+dibuja.criterio.Hurwicz(tablaX = tb1, favorable = FALSE)
+```
+
+### Criterio de Savage (desfav)
+
+```{r criterioSavageDesfavECR}
+criterio.Savage(tablaX = tb1, favorable = FALSE)
+```
+
+### Criterio de Laplace (desfav)
+
+```{r criterioLaplaceDesfavECR}
+criterio.Laplace(tablaX = tb1, favorable = FALSE)
+```
+
+### Criterio del Punto Ideal (desfav)
+
+```{r criterioPuntoIdealDesfavECR}
+criterio.PuntoIdeal(tablaX = tb1, favorable = FALSE)
+```
+
+### Resumen {-}
+Con respecto a los costes, todos los criterios eligen la alternative d5.
+
+
+## Problema 2 : Panadería "Pan y más"
+
+El modelo tiene los siguientes parámetros:
+
+* Un decisor: la dueña de la panadería
+
+* Modelo de ganancias (favorable)
+
+Las alternativas son:
+
+1. `d1`: no cambiar oferta,
+
+2. `d2`: pedir hogazas congeladas cada mes, o
+
+3. `d3`: colocar panadero para todo el año y comprar los ingredientes.
+
+Los posibles estados de la naturaleza son:
+
+1. `e1`: a los clientes españoles les gusta el nuevo pan, o
+
+2. `e2`: al los clientes españoles no les gusta el nuevo pan.
+
+Matriz de decision o valoraciones:
+
+```{r tablaDecisionECR}
+# numero fila = alternativa, numero columna = estado.
+# estado e1:
+m11 = 0
+m21 = (5000 - 1000) * 12
+m31 = (16000 - 8000) * 12
+# estado e2:
+m12 = 0
+m22 = -1000
+m32 = (2000 - 5000) * 12 - 3000  #emplear a panadero por todo el año + costes de ingredientes
+
+tb2 = crea.tablaX(c(m11, m12, m21, m22, m31, m32), 3, 2)
+
+knitr::kable(data.frame(tb2), format="markdown")
+```
+
+Ahora se aplican todos los criterios, poniendo alfa = 0.4:
+
+```{r criteriosECR}
+res2 = criterio.Todos(tb2, alfa = 0.4, favorable = TRUE)
+res2
+```
+
+Sólo si la dueña tiene una actitud exclusivamente pesimista elegiría la primera opción según el criterio de Wald. En cualquier otro caso, casí todos los criterios le aconsejan elegir la tercera opción.
+
+
