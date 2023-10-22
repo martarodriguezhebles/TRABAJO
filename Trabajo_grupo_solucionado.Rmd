@@ -74,6 +74,7 @@ cat("La alternativa óptima por el criterio ",OptimistaF$criterio, " en el caso 
     "\n", "es la ",names(OptimistaF$AlternativaOptima),
     " con un valor óptimo de ", OptimistaF$ValorOptimo, sep = "" )
 ```
+
 ### Desfavorable
 
 ```{r comment=NA}
@@ -88,6 +89,7 @@ cat("La alternativa óptima por el criterio ",OptimistaD$criterio, " en el caso 
 ```
 
 ## Hurwicz
+
 ### Favorable
 ```{r comment=NA}
 HurwiczF=criterio.Hurwicz(tabla1,T)
@@ -590,4 +592,243 @@ res2
 
 Sólo si la dueña tiene una actitud exclusivamente pesimista elegiría la primera opción según el criterio de Wald. En cualquier otro caso, casí todos los criterios le aconsejan elegir la tercera opción.
 
+
+\newpage
+# LUCÍA ROMERO SÁNCHEZ
+
+## PROBLEMA 1: Tabla de decisión 
+
+**Construir una tabla de decisión con valores inventados y resolver el problema con los métodos o funciones individuales de Incertidumbre por separado (tanto en situación favorable como desfavorable).**
+```{r echo=FALSE}
+datos_1 = c(0.2,1,
+            4,7,
+            1,0.33,
+            1,5)
+crea.tablaX = function(datos_1,numalternativas=4,numestados=2) {
+  
+  X = matrix(datos_1,nrow=numalternativas,ncol=numestados,byrow=TRUE)
+  colnames(X) = paste('e',1:numestados,sep='');
+  rownames(X) = paste('d',1:numalternativas,sep='');
+  return(X);
+  
+}
+
+tabla_1 = crea.tablaX(datos_1, 4, 2)
+tabla_1 
+```
+
+```{r echo=FALSE}
+kable(tabla_1, booktabs = TRUE, caption = "Tabla de decisión",align = "c",linesep = " ") %>%
+  kable_styling(latex_options = c("hold_position"),
+                bootstrap_options = "striped", full_width = F) 
+```
+
+Partiendo de esta, aplicaremos los métodos estudiados:
+
+## Criterio de Wald
+
+### Favorable
+```{r comment=NA}
+WaldF=criterio.Wald(tabla_1,T)
+WaldF
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",WaldF$criterio, " en el caso de ", 
+    ifelse(WaldF$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(WaldF$AlternativaOptima),
+    " con un valor óptimo de ", WaldF$ValorOptimo, sep = "" )
+```
+
+### Desfavorable
+```{r comment=NA}
+WaldD=criterio.Wald(tabla_1,F)
+WaldD
+cat("La alternativa óptima por el criterio ",WaldD$criterio, " en el caso de ", 
+    ifelse(WaldD$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(WaldD$AlternativaOptima),
+    " con un valor óptimo de ", WaldD$ValorOptimo, sep = "" )
+```
+
+```{r echo=FALSE, comment=NA}
+```
+
+\newpage
+## Criterio Optimista
+
+### Favorable
+```{r comment=NA}
+OptimistaF=criterio.Optimista(tabla_1,T)
+OptimistaF
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",OptimistaF$criterio, " en el caso de ", 
+    ifelse(OptimistaF$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(OptimistaF$AlternativaOptima),
+    " con un valor óptimo de ", OptimistaF$ValorOptimo, sep = "" )
+```
+
+### Desfavorable
+```{r comment=NA}
+OptimistaD=criterio.Optimista(tabla_1,F)
+OptimistaD
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",OptimistaD$criterio, " en el caso de ", 
+    ifelse(OptimistaD$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(OptimistaD$AlternativaOptima),
+    " con un valor óptimo de ", OptimistaD$ValorOptimo, sep = "" )
+```
+
+## Criterio de Hurwicz
+
+### Favorable
+```{r comment=NA}
+HurwiczF=criterio.Hurwicz(tabla_1,T)
+HurwiczF
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",HurwiczF$criterio, " en el caso de ", 
+    ifelse(HurwiczF$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(HurwiczF$AlternativaOptima),
+    " con un valor óptimo de ", HurwiczF$ValorOptimo, sep = "" )
+```
+
+### Desfavorable
+```{r comment=NA}
+HurwiczD=criterio.Hurwicz(tabla_1,F)
+HurwiczD
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",HurwiczD$criterio, " en el caso de ", 
+    ifelse(HurwiczD$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(HurwiczD$AlternativaOptima),
+    " con un valor óptimo de ", HurwiczD$ValorOptimo, sep = "" )
+```
+
+## Criterio de Savage
+
+### Favorable
+```{r comment=NA}
+SavageF=criterio.Savage(tabla_1,T)
+SavageF
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",SavageF$criterio, " en el caso de ", 
+    ifelse(SavageF$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(SavageF$AlternativaOptima),
+    " con un valor óptimo de ", SavageF$ValorOptimo, sep = "" )
+```
+
+### Desfavorable
+```{r comment=NA}
+SavageD=criterio.Savage(tabla_1,F)
+SavageD
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",SavageD$criterio, " en el caso de ", 
+    ifelse(SavageD$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(SavageD$AlternativaOptima),
+    " con un valor óptimo de ", SavageD$ValorOptimo, sep = "" )
+```
+
+## Criterio de La Place
+
+### Favorable
+```{r comment=NA}
+LaPlaceF=criterio.Laplace(tabla_1,T)
+LaPlaceF
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",LaPlaceF$criterio, " en el caso de ", 
+    ifelse(LaPlaceF$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(LaPlaceF$AlternativaOptima),
+    " con un valor óptimo de ", LaPlaceF$ValorOptimo, sep = "" )
+```
+
+### Desfavorable
+```{r comment=NA}
+LaPlaceD=criterio.Laplace(tabla_1,F)
+LaPlaceD
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",LaPlaceD$criterio, " en el caso de ", 
+    ifelse(LaPlaceD$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(LaPlaceD$AlternativaOptima),
+    " con un valor óptimo de ", LaPlaceD$ValorOptimo, sep = "" )
+```
+
+## Criterio de Punto ideal
+
+### Favorable
+```{r comment=NA}
+PuntoIdealF=criterio.PuntoIdeal(tabla_1,T)
+PuntoIdealF
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",PuntoIdealF$criterio, " en el caso de ", 
+    ifelse(PuntoIdealF$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(PuntoIdealF$AlternativaOptima),
+    " con un valor óptimo de ", PuntoIdealF$ValorOptimo, sep = "" )
+```
+
+### Desfavorable
+```{r comment=NA}
+PuntoIdealD=criterio.PuntoIdeal(tabla_1,F)
+PuntoIdealD
+```
+```{r echo=FALSE, comment=NA}
+cat("La alternativa óptima por el criterio ",PuntoIdealD$criterio, " en el caso de ", 
+    ifelse(PuntoIdealD$metodo=="favorable","beneficios","costes"),
+    "\n", "es la ",names(PuntoIdealD$AlternativaOptima),
+    " con un valor óptimo de ", PuntoIdealD$ValorOptimo, sep = "" )
+```
+
+\newpage
+##### PROBLEMA 2:
+
+**Inventar un enunciado que se refiera a una situación real y realizar su resolución con la función R que devuelve la resolución de todos los métodos en una única tabla.**
+
+Sergio es un ingeniero que trabaja en una empresa aeronáutica sevillana. Para firmar un contrato de producción de nuevos aviones, debe viajar a Madrid y alojarse durante varios días allí, por lo que debe llevarse una maleta de gran tamaño. Para su viaje está consultando 3 aerolíneas de manera que su desplazamiento le salga lo más económico posible. 
+ 
+En cuanto al precio de los billetes, la aerolínea Ryanair ofrece el viaje de ida por 25€ y la posibilidad de reservar por adelantado el viaje de vuelta por 40€. La aerolínea Vueling, ofrece el viaje de ida por 39€ y el viaje de vuelta por 33€. Finalmente, Iberia ofrece el viaje de ida por 60€ y el viaje de vuelta por 10€.
+
+Como él debe facturar maleta, las compañías le exigen pagar un suplemento de 45€ (Ryanair), de 29€ (Vueling) y de 25€ (Iberia).
+
+¿En qué aerolínea debería comprar Sergio su billete de manera que su desplazamiento le salga lo más económico posible?
+
+```{r}
+datos = c(25,45,40,
+          40,29,23,
+          60,25,10)
+crea.tablaX = function(datos,numalternativas=3,numestados=3) {
+  
+  X = matrix(datos,nrow=numalternativas,ncol=numestados,byrow=TRUE)
+  colnames(X) = paste('e',1:numestados,sep='');
+  rownames(X) = paste('d',1:numalternativas,sep='');
+  return(X);
+  
+}
+
+tabla_2 = crea.tablaX(datos, 3, 3)
+
+colnames(tabla_2) = c("Precio billete","Facturación maletas","Elección asiento")
+rownames(tabla_2) = c("Ryanair","Vueling","Iberia")
+tabla_2
+
+```
+
+```{r comment=NA}
+Solucion = criterio.Todos(tabla_2,0.5,F)
+Solucion 
+```
+
+```{r echo=FALSE}
+kable(Solucion, booktabs = TRUE,align = "c",linesep = " ") %>%
+  kable_styling(latex_options = c("hold_position"),
+                bootstrap_options = "striped", full_width = T) 
+```
+
+Mediante la resolución que hemos realizado, podemos concluir que la aerolínea elegida por Sergio para comprar su billete debería ser Iberia puesto que cumple con el criterio Optimista.
+
+Por el contrario, la menos recomendable es Vueling debido a su criterio Pesimista (o también llamado criterio de Wald).
 
