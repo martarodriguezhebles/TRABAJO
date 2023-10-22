@@ -1,0 +1,157 @@
+---
+title: "Métodos de incertidumbre"
+author: "Luis Ocaña, Eva Resch, Marta Rodriguez y Lucia Romero"
+date: "10 de octubre de 2023"
+lang: es
+output:
+  pdf_document:
+    toc: yes
+    number_sections: yes
+---
+
+```{r setup, include=FALSE}
+library(kableExtra)
+library(tidyverse)
+source("teoriadecision_funciones_incertidumbre.R") # Lectura de las funciones 
+# creadas por "calote" en GitHub.
+```
+
+\newpage
+# Selección coche de alquiler
+
+Luis se va de vacaciones de Mykonos y quiere alquilar un coche durante un día para recorrerse la isla. Estaba pensando alquilar un coche pequeño, como un fiat 500, encontrando las siguientes 3 empresas con este tipo de vehículos: Avis, que por 1 día le cobra 50€, Europcar por 65€ y Cicar por 80€. Todas las empresas tienen una política de seguros muy diferentes.
+
+En Avis no incluye ningún seguro ni asistencia en carretera, cobrándole 25€ si pincha una rueda, 60€ si rompe la luna del coche y 350€ en caso de que el coche quede siniestro. En Europcar tiene un seguro básico, que cubre una parte de los daños; si se le pincha la rueda del coche le cobran 15€, 25€ si se le rompe la luna del coche y 185€ en caso de siniestro. En cambio, en Cicar cuenta con un seguro a todo riesgo sin franquicia.
+
+¿Qué empresa debería escoger Luis si quiere ahorrarse el máximo dinero posible/piensa que todo le va a ir bien? ¿Y si fuera al revés y tuviera siempre "mala suerte"?
+
+# Ejemplo tabla de decisión con valores inventados.
+```{r echo=FALSE}
+set.seed(2601) # Semilla para reproductividad
+datos1=runif(4*7) # Creación de datos aleatorios
+tabla1=crea.tablaX(datos1,7,4) # Creación de la tabla
+```
+
+```{r echo=FALSE}
+kable(tabla1, booktabs = TRUE, caption = "Tabla de decisión",align = "c",linesep = " ") %>%
+  kable_styling(latex_options = c("hold_position"),
+                bootstrap_options = "striped", full_width = F) 
+```
+
+\newpage
+# Marta Rodríguez Hebles
+
+# Tabla de decisión con valores inventados.
+```{r echo=FALSE}
+set.seed(123) 
+n=50
+datos=runif(n) # Creación de datos aleatorios
+tabla=crea.tablaX(datos,7,4) 
+```
+
+```{r echo=FALSE}
+kable(tabla, booktabs = TRUE, caption = "Tabla de decisión",align = "c",linesep = " ") %>%
+  kable_styling(latex_options = c("hold_position"),
+                bootstrap_options = "striped", full_width = F) 
+```
+
+
+# Selección empresa proveedora
+
+Una empresa de venta de electrodomésticos desea contartar un proveedor para el próximo año, de manera que le salga lo más rentable posible. Todos los proveedores tienes un precio fijo inicial para un pedido de 1000 unidades, dependiendo de la marca, y dicho precio aumenta por cada 100 unidades extra que la empresa solicite fuera de plazo. 
+
+Tiene tres opciones, el proveedor A le cobra 500 u.m.por el primer pedido, el B 450 u.m. y el C 700 u.m.. si añade 100 unidades mas, el proveedor A le cobrara 200 u.m. de suplemento, el B 250 u.m. y el C 100 u.m.. Mientras que si añade otras 100 unidades mas el proveedor A le sumará 150 u.m, el B 200 u.m. y el C nada.
+
+¿Cuál es la opción más rentable si espera muchas ventas este año? ¿Y si tiene una previsión negativa?
+
+
+\newpage
+# Eva Clara Resch
+
+## Problema 1 : Tabla de Decisión
+
+Aplicar los criterios de decisión bajo incertidumbre a el problema cuya matriz de valores numéricos viene dada en la tabla siguiente:
+
+```{r tablaDecision1, include=FALSE}
+set.seed(13)
+tb1 = crea.tablaX(rnorm(5*6, mean=100, sd=10), 5, 6)
+df1 = data.frame(tb1)
+```
+
+```{r printtable}
+knitr::kable(df1, format="markdown")
+```
+
+Considerar beneficios (favorable) y costos (desfavorable).
+
+## Problema 2 : Panadería "Pan y más"
+
+La panadería "Pan y más" en la calle Amor de Dios está estudiando la posibilidad de aumentar su oferta de diferentes tipos de pan.
+
+Durante su visita en Múnich, Alemania, la dueña se enamoró del pan alemán y sus variedades, así que ahora está contemplando de introducir a sus clientes españoles algunos de las especialidades que encontró en las panaderías alemanas.
+
+Se le presentan 3 opciones:
+
+* no cambiar su oferta
+
+* importar una cierta cantidad mensual de hogazas congeladas y hornear algunas cada día
+
+* colocar a un panadero especializado en la tradición alemana de panificación.
+
+Los efectos se registrarán a lo largo de un año, por lo que deberán sopesarse los costes y beneficios correspondientes a ese periodo.
+
+La primera opción no conlleva pérdidas, pero tampoco beneficios. 
+
+La segunda opción tiene un coste de 1.000 euros por pedido y se puede pedir en caso de que sea necesario (p.e. cada mes). 
+Si a los clientes les gusta el pan, la panadería obtendrá un plus mensual de 5.000 euros. Si no, es decir, si los clientes no compran el pan, no hará más pedidos.
+
+La tercera opción - emplear a un panadero con un contrato para todo el año y comprar los ingredientes - supone unos gastos mensuales adicionales de 5.000 y 3.000 euros, respectivo.
+Si a los clientes les gusta el pan, obtendrán un plus mensual de 16.000 euros. Si no, sólo obtendrá 2.000 euros de beneficio al mes con la ayuda que le preste el panadero en el negocio normal.
+
+¿Qué le recomienda usted que opción eleja, si su objetivo es maximar las ganancias?
+
+
+\newpage
+# LUCÍA ROMERO SÁNCHEZ
+
+## PROBLEMA 1: Tabla de decisión 
+
+**Construir una tabla de decisión con valores inventados y resolver el problema con los métodos o funciones individuales de Incertidumbre por separado (tanto en situación favorable como desfavorable).**
+```{r echo=FALSE}
+datos_1 = c(0.2,1,
+            4,7,
+            1,0.33,
+            1,5)
+crea.tablaX = function(datos_1,numalternativas=4,numestados=2) {
+  
+  X = matrix(datos_1,nrow=numalternativas,ncol=numestados,byrow=TRUE)
+  colnames(X) = paste('e',1:numestados,sep='');
+  rownames(X) = paste('d',1:numalternativas,sep='');
+  return(X);
+  
+}
+
+tabla_1 = crea.tablaX(datos_1, 4, 2)
+tabla_1 
+```
+
+```{r echo=FALSE}
+kable(tabla_1, booktabs = TRUE, caption = "Tabla de decisión",align = "c",linesep = " ") %>%
+  kable_styling(latex_options = c("hold_position"),
+                bootstrap_options = "striped", full_width = F) 
+```
+
+Partiendo de esta, aplicaremos los métodos estudiados.
+
+
+## PROBLEMA 2:
+
+**Inventar un enunciado que se refiera a una situación real y realizar su resolución con la función R que devuelve la resolución de todos los métodos en una única tabla.**
+
+Sergio es un ingeniero que trabaja en una empresa aeronáutica sevillana. Para firmar un contrato de producción de nuevos aviones, debe viajar a Madrid y alojarse durante varios días allí, por lo que debe llevarse una maleta de gran tamaño. Para su viaje está consultando 3 aerolíneas de manera que su desplazamiento le salga lo más económico posible. 
+
+En cuanto al precio de los billetes, la aerolínea Ryanair ofrece el viaje de ida por 25€ y la posibilidad de reservar por adelantado el viaje de vuelta por 40€. La aerolínea Vueling, ofrece el viaje de ida por 39€ y el viaje de vuelta por 33€. Finalmente, Iberia ofrece el viaje de ida por 60€ y el viaje de vuelta por 10€.
+
+Como él debe facturar maleta, las compañías le exigen pagar un suplemento de 45€ (Ryanair), de 29€ (Vueling) y de 25€ (Iberia).
+
+¿En qué aerolínea debería comprar Sergio su billete de manera que su desplazamiento le salga lo más económico posible?
